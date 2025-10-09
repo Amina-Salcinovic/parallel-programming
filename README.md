@@ -51,7 +51,7 @@ Also the variable ipos is used before assigninf it a value, so I initialize the 
 
 
 (base) student@itcenter-lab128:~/Desktop/parallel-programing-amina/parallel-programming$ make valgrind
-gcc -Wall -Wextra -g -std=c99 -o memory_demo main.c
+gcc -Wall -Wextra -g -std=c99 -o memory_demo main.c 2
 main.c: In function ‘main’:
 main.c:8:7: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
     8 |       printf("Memory allocation failed!\n");
