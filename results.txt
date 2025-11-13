@@ -1,5 +1,3 @@
-
-
 (base) student@itcenter-lab128:~/Desktop/week7$ make
 Compiling timer...
 gcc -fopenmp -Wall -std=c11 -march=native -O2 -c timer.c -o timer.o
@@ -83,49 +81,3 @@ Iter 7000
 Iter 8000
 Iter 9000
 Timing is init 0.022704 flush 70.874369 stencil 140.965375 total 212.605873
-
-Description 
-
-This assignment compares the execution time and implementation differences between three versions of the stencil code:
-    1. stencil_opt2.c – base optimized version (from Example_06)
-
-    2. stencil_opt4.c – improved version with partial parallel restructuring
-
-    3. stencil_opt6.c – further optimized version with full thread-level partitioning
-
-All three versions produce similar total times (210–218 s).
-
-stencil_opt4 achieved the lowest total execution time.
-
-The differences are small but measurable, indicating improvements in synchronization and workload management.
-
-stencil_opt2.c - Uses multiple #pragma omp parallel for sections for each computation phase and has simpler, more readable implementation but it is less efficient.
-
-stencil_opt4.c - Wraps the main computation loop (iter) inside one parallel region. Reduces thread creation overhead by keeping threads alive for all iterations. Uses nowait clause to skip implicit barriers where not needed.
-
-stencil_opt6.c - Introduces manual barriers (#pragma omp barrier) for synchronization. Avoids omp for loops entirely, replacing them with manually partitioned work for complete control. Eliminates unnecessary synchronization and improves data locality.
-
-Conclusion 
-
-- All programs ran with 4 threads.
-
-- Improved parts of the code:
-
-* Fewer times creating and closing parallel regions.
-
-* Work better divided among threads.
-
-* Less waiting between threads.
-
-* Some versions split the work by thread to use memory more efficiently.
-
-- Performance comparison:
-
-stencil_opt2: Easiest to understand but slower because threads keep starting and stopping.
-
-stencil_opt4: Faster and well-balanced, keeps threads active for all work.
-
-stencil_opt6: Most complex, manually divides work between threads, speed is similar to opt4 because the task is limited by memory speed.
-
-![terminal.png](./terminal.png)
-
