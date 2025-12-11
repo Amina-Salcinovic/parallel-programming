@@ -2,11 +2,11 @@
 
 Description 
 
-![omp.png](/openacc.png)
+![omp.png](./resources/openacc.png)
 
 The terminal output simply shows that all OpenACC programs were compiled successfully, and the compiler automatically optimized several loops so they can run on the GPU. The messages about “gang” and “vector” are just the compiler telling us that it applied parallelism.
 
-![cuda.png](/cuda.png)
+![cuda.png](./resources/cuda.png)
 
 When I entered the cuda folder and ran make, the compiler started building the CUDA version of the StreamTriad program.
 
@@ -31,7 +31,7 @@ CUDA toolkit (with nvcc) is installed on the lab machine.
 
 The program successfully linked against the CUDA GPU library.
 
-![ocl.png](/ocl.png)
+![ocl.png](./resources/ocl.png)
 
 The command: cc -o StreamTriad StreamTriad.o timer.o ezcl_lite.o -lOpenCL
 
@@ -39,7 +39,7 @@ means the compiler is linking all the object files into one final executable cal
 
 The terminal output shows that the OpenCL program linked successfully with the OpenCL library. This means the OpenCL version of StreamTriad is ready to run on any compatible device.
 
-![omp.png](/omp.png)
+![omp.png](./resources/omp.png)
 
 lto-wrapper: fatal error: could not find accel/nvptx-none/mkoffload
 
@@ -56,8 +56,8 @@ Without them, GCC cannot build the GPU version, so the linking fails.
 
 ------------------------------------------------
 
-![terminal1.png](/terminal1.png)
-![terminal2.png](/terminal2.png)
+![terminal1.png](./resources/terminal1.png)
+![terminal2.png](./resources/terminal2.png)
 
 
 When I connected to the lab's PC I ran the normal version and one parallel version:
